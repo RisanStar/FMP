@@ -238,6 +238,9 @@ MonoBehaviour:
   playerSprite: {fileID: 0}
   rb: {fileID: 0}
   moveSpeed: 5
+  ground:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &24282710
 MonoBehaviour:
   m_ObjectHideFlags: 0

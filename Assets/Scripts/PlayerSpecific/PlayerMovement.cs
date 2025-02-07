@@ -14,10 +14,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDir;
     [SerializeField] private float moveSpeed;
 
+    [SerializeField] private LayerMask ground;
+
     private void Awake()
     {
         playerCntrls = new PlayerCntrls();
         rb = GetComponentInChildren<Rigidbody>();
+
     }
 
     private void OnEnable()
@@ -31,9 +34,19 @@ public class PlayerMovement : MonoBehaviour
         playerMove.Disable();
     }
 
+    private void Update()
+    {
+        
+    }
+
     private void FixedUpdate()
     {
-        moveDir = playerMove.ReadValue<Vector3>();
-        rb.velocity = new Vector3((moveDir.x * moveSpeed), moveDir.y, moveDir.z);
+        moveDir = playerMove.ReadValue<Vector2>();
+        rb.velocity = new Vector2((moveDir.x * moveSpeed), moveDir.y);
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics.Raycast(gameObject.transform.position, Vector2.down, .2f, ground);
     }
 }
